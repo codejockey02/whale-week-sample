@@ -1,0 +1,7 @@
+sudo: required
+services:
+  - docker
+before-install:
+  - docker build -t priyeshs2/sample-react .
+script:
+  - docker run priyeshs2/sample-react npm run test -- --coverage
