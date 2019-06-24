@@ -2,6 +2,15 @@ sudo: required
 services:
   - docker
 before-install:
-  - docker build -t priyeshs2/sample-react .
+  - docker build -t priyeshs2/sample .
 script:
-  - docker run priyeshs2/sample-react npm run test -- -- coverage
+  - docker run priyeshs2/sample npm run test -- -- coverage
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: "docker-sample"
+  env: "Docker-env"
+  bucket-name: "elasticbeanstalk-ap-south-1-980064312340"
+  path: "docker-sample"
+on:
+  branch: master
